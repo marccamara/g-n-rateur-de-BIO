@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bio Creator</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<!-- Écran d'accueil -->
+<div id="homeScreen" class="screen">
+    <div class="icon">🎤</div>
+    <h1>Générateur de BIO</h1>
+    <button id="startButton">Commencer</button>
+</div>
+
+<!-- Écran générateur -->
+<div id="generatorScreen" class="screen" style="display:none;">
+    <div class="pseudo-container">
+        <label>Pseudo Instagram :</label>
+        <input id="pseudoDisplay" type="text" placeholder="">
+        <button id="modifyBtn">✏️ Modifier</button>
+    </div>
+    <input id="phraseOutput" readonly>
+    <div class="buttons">
+        <button id="generateBtn">🎲 Générer</button>
+        <button id="copyBtn">📋 Copier</button>
+    </div>
+    <button id="themeToggle">🌙 / ☀️</button>
+</div>
+
+<script src="/static/js/script.js"></script>
+</body>
+</html>

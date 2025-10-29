@@ -1,0 +1,14 @@
+{
+  "name": "bio-creator",
+  "version": "1.0.0",
+  "description": "Générateur de BIO en Flask + Capacitor",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "build": "echo 'Build Flask WebApp'"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/cli": "^6.0.0"
+  }
+}

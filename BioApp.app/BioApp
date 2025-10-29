@@ -1,0 +1,3 @@
+#!/bin/bash
+# Stub pour lancer l’app
+echo "Launching BioApp..."

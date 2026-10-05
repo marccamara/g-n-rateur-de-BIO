@@ -1,0 +1,41 @@
+name: Build iOS IPA
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Sélectionner la version de Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
+
+      - name: Lancer la compilation (Archive Xcode)
+        run: |
+          xcodebuild archive \
+            -project FruitzBioGenerator.xcodeproj \
+            -scheme FruitzBioGenerator \
+            -sdk iphoneos \
+            -configuration Release \
+            -archivePath $RUNNER_TEMP/FruitzBioGenerator.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO
+
+      - name: Convertir l'archive en IPA (pour TrollStore / Jailbreak)
+        run: |
+          mkdir -p $RUNNER_TEMP/Payload
+          cp -R $RUNNER_TEMP/FruitzBioGenerator.xcarchive/Products/Applications/*.app $RUNNER_TEMP/Payload/
+          cd $RUNNER_TEMP
+          zip -r FruitzBioGenerator.ipa Payload
+
+      - name: Téléverser l'IPA dans les Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: FruitzBioGenerator-IPA
+          path: ${{ runner.temp }}/FruitzBioGenerator.ipa
